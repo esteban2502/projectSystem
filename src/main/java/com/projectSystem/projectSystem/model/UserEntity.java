@@ -2,6 +2,8 @@ package com.projectSystem.projectSystem.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -21,9 +23,12 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotNull
     private String name;
     @Column(unique = true)
+    @Email
     private String email;
+    @NotNull
     private String password;
     @Column(name = "is_enabled")
     private boolean isEnabled;

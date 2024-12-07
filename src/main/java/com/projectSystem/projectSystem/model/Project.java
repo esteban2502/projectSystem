@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -24,11 +26,17 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotNull
+    @Size(max = 150)
     private String name;
+    @NotNull
     private String description;
     @Enumerated(EnumType.STRING)
+    @NotNull
     private Status status;
+    @NotNull
     private LocalDate startDate;
+    @NotNull
     private LocalDate endDate;
     @JsonManagedReference
     @OneToMany( mappedBy = "project",fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
